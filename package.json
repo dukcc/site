@@ -13,7 +13,7 @@
     "@astrojs/svelte": "^7.2.4",
     "@fontsource/dm-mono": "^5.2.7",
     "@fontsource/dm-sans": "^5.2.8",
-    "@slatetech/design": "^1.0.7",
+    "@slatetech/design": "^1.0.9",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
     "phosphor-icons-svelte": "^2.1.0",
