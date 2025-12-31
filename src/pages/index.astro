@@ -26,7 +26,7 @@ import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
                 const rect = conic.getBoundingClientRect();
                 const x = event.clientX - (rect.left + rect.width / 2);
                 const y = event.clientY - (rect.top + rect.height / 2);
-                const angle = Math.atan2(y, x) * (180 / Math.PI);
+                const angle = Math.atan2(y, x) * (180 / Math.PI) - 90;
 
                 (conic as HTMLElement).style.setProperty(
                     "--angle",
