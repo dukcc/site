@@ -7,7 +7,7 @@ import "~/styles/base.css";
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,8 +15,8 @@ const { title } = Astro.props;
         <title>{title} ~ Jcbdkc</title>
     </head>
     <body
-        class="bg-bg text-text flex items-start justify-center overflow-x-hidden p-12"
+        class="bg-bg text-text flex items-start justify-start overflow-x-hidden p-8"
     >
-        <main class="flex flex-col gap-12"><slot /></main>
+        <slot />
     </body>
 </html>

@@ -1,1 +1,11 @@
 @import "../../node_modules/@slatetech/design/src/tailwind.css";
+
+@theme {
+    --color-pareen: oklch(0.4631 0.2753 275.23);
+    --color-rust: rgba(210, 97, 37, 1);
+}
+
+@variant dark {
+    --color-pareen: rgba(110, 78, 255, 1);
+    --color-rust: rgba(255, 152, 96, 1);
+}

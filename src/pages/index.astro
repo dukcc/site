@@ -4,5 +4,35 @@ import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
 ---
 
 <Layout title="Home">
-    <JcbdkcLogo size="lg" class="w-4xl h-auto" />
+    <main class="grid grid-cols-3 grid-rows-2 gap-8 w-full">
+        <div class="flex flex-col gap-8">
+            <JcbdkcLogo size="lg" class="w-full h-auto" />
+            <h3 class="text-title-3">
+                I’m Jacob, a creative designer and developer.
+            </h3>
+            <div
+                class="w-full h-256 rounded-32"
+                style="--angle: 180deg; background-image: conic-gradient(from var(--angle) in srgb, var(--color-pareen), var(--color-bg), var(--color-pareen));"
+                data-follow-conic
+            >
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const conic = document.querySelector("[data-follow-conic]");
+        if (conic) {
+            window.addEventListener("pointermove", (event) => {
+                const rect = conic.getBoundingClientRect();
+                const x = event.clientX - (rect.left + rect.width / 2);
+                const y = event.clientY - (rect.top + rect.height / 2);
+                const angle = Math.atan2(y, x) * (180 / Math.PI);
+
+                (conic as HTMLElement).style.setProperty(
+                    "--angle",
+                    `${angle}deg`,
+                );
+            });
+        }
+    </script>
 </Layout>
