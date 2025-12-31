@@ -1,6 +1,9 @@
 ---
 import Layout from "~/layouts/Layout.astro";
 import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
+
+import OpenMarchLogo from "~/assets/OpenMarch.svg";
+import SlateLogo from "~/assets/Slate.svg";
 ---
 
 <Layout title="Home">
@@ -11,10 +14,44 @@ import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
                 I’m Jacob, a creative designer and developer.
             </h3>
             <div
-                class="w-full h-256 rounded-32"
+                class="w-full h-auto aspect-4/3 rounded-32"
                 style="--angle: 180deg; background-image: conic-gradient(from var(--angle) in srgb, var(--color-pareen), var(--color-bg), var(--color-pareen));"
                 data-follow-conic
             >
+            </div>
+        </div>
+
+        <div class="rounded-32 bg-accent flex items-start justiy-start p-24">
+            <div
+                class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
+            >
+                <div class="flex items-center gap-12">
+                    <SlateLogo />
+                    <h1 class="text-title-1 text-text">Slate</h1>
+                </div>
+                <div class="flex gap-8">
+                    <h3 class="text-title-3 text-text">
+                        Founder, Designer & Dev
+                    </h3>
+                    <h3 class="text-title-3 text-text-2">2024-Present</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="rounded-32 bg-accent flex items-start justiy-start p-24">
+            <div
+                class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
+            >
+                <div class="flex items-center gap-12">
+                    <OpenMarchLogo />
+                    <h1 class="text-title-1 text-text">OpenMarch</h1>
+                </div>
+                <div class="flex gap-8">
+                    <h3 class="text-title-3 text-text">
+                        UI Designer & Front-end
+                    </h3>
+                    <h3 class="text-title-3 text-text-2">2024-Present</h3>
+                </div>
             </div>
         </div>
     </main>
