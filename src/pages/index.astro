@@ -13,7 +13,9 @@ import SlateLogo from "~/assets/Slate.svg";
 ---
 
 <Layout title="Home">
-    <main class="grid grid-cols-3 grid-rows-2 gap-8 w-full">
+    <main
+        class="grid grid-cols-3 max-[1280px]:grid-cols-2 max-[800px]:grid-cols-1 grid-rows-2 gap-8 w-full"
+    >
         <div class="flex flex-col gap-8">
             <JcbdkcLogo size="lg" class="w-full h-auto" />
             <h3 class="text-title-3">
@@ -70,7 +72,9 @@ import SlateLogo from "~/assets/Slate.svg";
                     height={128}
                     class="size-72 rounded-16"
                 />
-                <h1 class="text-large-title">about my person</h1>
+                <h1 class="text-large-title max-[950px]:text-title-1">
+                    about my person
+                </h1>
             </div>
             <div
                 class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-24 flex-col"
@@ -99,7 +103,9 @@ import SlateLogo from "~/assets/Slate.svg";
         </div>
 
         <div class="flex flex-col gap-8">
-            <h1 class="text-large-title">methods to inquire of me</h1>
+            <h1 class="text-large-title max-[950px]:text-title-1">
+                methods to inquire of me
+            </h1>
             <div
                 class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-8 flex-col"
             >
