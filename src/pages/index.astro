@@ -2,6 +2,12 @@
 import Layout from "~/layouts/Layout.astro";
 import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
 
+import { Image } from "astro:assets";
+import pfpImage from "~/assets/pfp.png";
+
+import EnvelopeOpenIcon from "phosphor-icons-svelte/IconEnvelopeOpenRegular.svelte";
+import PaperPlaneRightIcon from "phosphor-icons-svelte/IconPaperPlaneRightRegular.svelte";
+
 import OpenMarchLogo from "~/assets/OpenMarch.svg";
 import SlateLogo from "~/assets/Slate.svg";
 ---
@@ -21,7 +27,7 @@ import SlateLogo from "~/assets/Slate.svg";
             </div>
         </div>
 
-        <div class="rounded-32 bg-accent flex items-start justiy-start p-24">
+        <div class="rounded-32 bg-rust flex items-start justiy-start p-24">
             <div
                 class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
             >
@@ -38,7 +44,7 @@ import SlateLogo from "~/assets/Slate.svg";
             </div>
         </div>
 
-        <div class="rounded-32 bg-accent flex items-start justiy-start p-24">
+        <div class="rounded-32 bg-pareen flex items-start justiy-start p-24">
             <div
                 class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
             >
@@ -51,6 +57,91 @@ import SlateLogo from "~/assets/Slate.svg";
                         UI Designer & Front-end
                     </h3>
                     <h3 class="text-title-3 text-text-2">2024-Present</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-8">
+            <div class="flex gap-8 items-center">
+                <Image
+                    src={pfpImage}
+                    alt="Profile Picture"
+                    width={128}
+                    height={128}
+                    class="size-72 rounded-16"
+                />
+                <h1 class="text-large-title">about my person</h1>
+            </div>
+            <div
+                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-24 flex-col"
+            >
+                <div class="flex flex-col gap-12">
+                    <h3 class="text-title-3">summary</h3>
+                    <p class="text-body leading-relaxed">
+                        I’m Jacob, a creative user interface designer and
+                        front-end developer. I put lots of care into special,
+                        unique design and performance because both of those
+                        factors make up great user experience. Design,
+                        performance and ease of use are of top priority.
+                    </p>
+                </div>
+                <div class="flex flex-col gap-12">
+                    <h3 class="text-title-3">fun facts</h3>
+                    <p class="text-body leading-relaxed">
+                        I love music, mainly drum corps/marching arts,
+                        alternative electronic, and classical/jazz. I’m a
+                        trombone player. I’m a Royal Canadian Sea Cadet.
+                        Obsessed with operating systems and city design,
+                        basically how everything works behind the scenes.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-8">
+            <h1 class="text-large-title">methods to inquire of me</h1>
+            <div
+                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-8 flex-col"
+            >
+                <EnvelopeOpenIcon class="size-48 text-text" />
+                <h1 class="text-title-1">Electronic Mail</h1>
+                <div class="flex gap-8">
+                    <p class="text-title-3 text-text-2">Address</p>
+                    <a
+                        href="mailto:hello@dukc.dev"
+                        class="text-title-3 font-mono hover:underline"
+                    >
+                        hello@dukc.dev
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-8 flex-col"
+            >
+                <PaperPlaneRightIcon class="size-48 text-text" />
+                <h1 class="text-title-1">Direct Message</h1>
+                <div class="flex gap-12">
+                    <div class="flex gap-8">
+                        <p class="text-title-3 text-text-2">Discord</p>
+                        <button
+                            type="button"
+                            class="text-title-3 font-mono hover:underline focus:outline-none"
+                            data-copy-handle="@dukkcc"
+                            aria-label="Copy Discord handle"
+                        >
+                            @dukkcc
+                        </button>
+                    </div>
+                    <div class="flex gap-8">
+                        <p class="text-title-3 text-text-2">Instagram</p>
+                        <a
+                            href="https://www.instagram.com/dukkcc0/"
+                            class="text-title-3 font-mono hover:underline"
+                        >
+                            @dukkcc0
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,6 +160,32 @@ import SlateLogo from "~/assets/Slate.svg";
                     "--angle",
                     `${angle}deg`,
                 );
+            });
+        }
+
+        const handleCopyButton =
+            document.querySelector<HTMLButtonElement>("[data-copy-handle]");
+
+        if (handleCopyButton) {
+            handleCopyButton.addEventListener("click", async () => {
+                const value =
+                    handleCopyButton.dataset.copyHandle ||
+                    handleCopyButton.textContent?.trim();
+
+                if (!value) {
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(value);
+                    const originalText = handleCopyButton.textContent;
+                    handleCopyButton.textContent = "Copied!";
+                    setTimeout(() => {
+                        handleCopyButton.textContent = originalText;
+                    }, 1500);
+                } catch (error) {
+                    console.error("Failed to copy handle", error);
+                }
             });
         }
     </script>
