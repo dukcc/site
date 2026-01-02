@@ -13,6 +13,19 @@ const { title } = Astro.props;
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <title>{title} ~ Jcbdkc</title>
+        <script is:inline>
+            const root = document.documentElement;
+            const media = window.matchMedia("(prefers-color-scheme: dark)");
+            const applyPreference = (event) => {
+                if (event.matches) {
+                    root.classList.add("dark");
+                } else {
+                    root.classList.remove("dark");
+                }
+            };
+            applyPreference(media);
+            media.addEventListener("change", applyPreference);
+        </script>
     </head>
     <body
         class="bg-bg text-text flex items-start justify-start overflow-x-hidden p-8"
