@@ -7,3 +7,10 @@ This new branch is updated with the new Meowmax design. I also have taken on cod
 # Brand
 
 The correct capitalization for the brand is `Jcbdkc`. If you are curious, that name is short for "Jacob" and "dukc", Jacob being my actual name and dukc being my old online alias.
+
+# Todo
+
+- [ ] /meows navigation
+- [ ] slate contact establisher 3
+- [ ] mobile
+- [ ] markdown image block system for writing meows
