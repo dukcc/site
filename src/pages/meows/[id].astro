@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
 import Prose from "~/components/Prose.astro";
 import MeowIcons from "~/components/logos/MeowIcons.astro";
+import ChevronIcon from "~/components/logos/icons/ChevronIcon.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("meows");
@@ -17,15 +18,23 @@ const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title}>
-    <div class="max-w-5xl w-full rounded-lg bg-boo text-white flex flex-col p-16 gap-16">
-        <div class="flex flex-col gap-2 items-end">
-            <div class="flex items-center gap-0">
-                <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><JcbdkcLogomark class="size-12 text-black" /></div>
-                <div class="w-3 h-6 bg-[#b8b8b8]"></div>
-                <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><MeowIcons class="size-12 text-black" icon={post.data.icon} /></div>
-            </div>
-            <h1 class="font-titre font-bold text-9xl bg-clip-text text-transparent bg-linear-to-b from-white to-[#999]">{post.data.title}</h1>
+    <section class="max-w-5xl flex flex-col gap-2">
+        <div class="flex justify-between">
+            <a href="/" class="bg-mic h-11 flex items-center justify-center pl-2.5 px-4 gap-1 rounded-lg hover:shadow-wow active:scale-95 active:shadow-none duration-150">
+                <ChevronIcon />
+                <p>index</p>
+            </a>
         </div>
-        <Prose><Content /></Prose>
-    </div>
+        <div class="w-full rounded-lg bg-boo text-white flex flex-col p-16 gap-16">
+            <div class="flex flex-col gap-2 items-end">
+                <div class="flex items-center gap-0">
+                    <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><JcbdkcLogomark class="size-12 text-black" /></div>
+                    <div class="w-3 h-6 bg-[#b8b8b8]"></div>
+                    <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><MeowIcons class="size-12 text-black" icon={post.data.icon} /></div>
+                </div>
+                <h1 class="font-titre font-bold text-9xl bg-clip-text text-transparent bg-linear-to-b from-white to-[#999]">{post.data.title}</h1>
+            </div>
+            <Prose><Content /></Prose>
+        </div>
+    </section>
 </Layout>
