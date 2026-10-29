@@ -1,0 +1,26 @@
+---
+import Layout from "~/layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
+import Prose from "~/components/Prose.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("meows");
+    return posts.map((post) => ({
+        params: { id: post.id },
+        props: { post },
+    }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+    <div class="max-w-5xl w-full rounded-lg bg-boo text-white flex flex-col p-16 gap-16">
+        <div class="flex flex-col gap-2 items-end">
+            <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><JcbdkcLogomark class="size-12 text-black" /></div>
+            <h1 class="font-titre font-bold  text-9xl">{post.data.title}</h1>
+        </div>
+        <Prose><Content /></Prose>
+    </div>
+</Layout>

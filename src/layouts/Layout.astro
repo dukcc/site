@@ -1,7 +1,5 @@
 ---
-import "@fontsource/dm-sans/400.css";
-import "@fontsource/dm-sans/700.css";
-import "@fontsource/dm-mono/400.css";
+import { Font } from "astro:assets";
 import "~/styles/base.css";
 
 const { title } = Astro.props;
@@ -13,23 +11,10 @@ const { title } = Astro.props;
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <title>{title} ~ Jcbdkc</title>
-        <script is:inline>
-            const root = document.documentElement;
-            const media = window.matchMedia("(prefers-color-scheme: dark)");
-            const applyPreference = (event) => {
-                if (event.matches) {
-                    root.classList.add("dark");
-                } else {
-                    root.classList.remove("dark");
-                }
-            };
-            applyPreference(media);
-            media.addEventListener("change", applyPreference);
-        </script>
+        <Font cssVariable="--font-cossette" />
+        <Font cssVariable="--font-cossette-titre" />
     </head>
-    <body
-        class="bg-bg text-text flex items-start justify-start overflow-x-hidden p-8"
-    >
+    <body class="bg-bg overflow-x-hidden p-2 pt-64 flex flex-col items-center gap-32">
         <slot />
     </body>
 </html>

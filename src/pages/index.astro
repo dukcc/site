@@ -1,206 +1,51 @@
 ---
 import Layout from "~/layouts/Layout.astro";
-import JcbdkcLogo from "~/components/JcbdkcLogo.astro";
+import JcbdkcLogo from "~/components/logos/JcbdkcLogo.astro";
+import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
+import Star from "~/components/logos/Star.astro";
+import ContactEstablisher from "~/components/ContactEstablisher.astro";
+import { getCollection } from 'astro:content';
+import MeowIcons from "~/components/logos/MeowIcons.astro";
 
-import { Image } from "astro:assets";
-import pfpImage from "~/assets/pfp.png";
-
-import EnvelopeOpenIcon from "phosphor-icons-svelte/IconEnvelopeOpenRegular.svelte";
-import PaperPlaneRightIcon from "phosphor-icons-svelte/IconPaperPlaneRightRegular.svelte";
-
-import OpenMarchLogo from "~/assets/OpenMarch.svg";
-import SlateLogo from "~/assets/Slate.svg";
+const meows = await getCollection("meows");
 ---
 
 <Layout title="Home">
-    <main
-        class="grid grid-cols-3 max-[1280px]:grid-cols-2 max-[800px]:grid-cols-1 grid-rows-2 gap-8 w-full"
-    >
-        <div class="flex flex-col gap-8">
-            <JcbdkcLogo size="lg" class="w-full h-auto" />
-            <h3 class="text-title-3">
-                I’m Jacob, a creative designer and developer.
-            </h3>
-            <div
-                class="w-full h-auto aspect-4/3 rounded-32"
-                style="--angle: 180deg; background-image: conic-gradient(from var(--angle) in srgb, var(--color-pareen), var(--color-bg), var(--color-pareen));"
-                data-follow-conic
-            >
-            </div>
-        </div>
-
-        <a
-            href="https://slatetech.org"
-            target="_blank"
-            class="rounded-32 bg-rust flex items-start justiy-start p-24 hover:brightness-105 active:scale-95 duration-200 ease-out"
-        >
-            <div
-                class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
-            >
-                <div class="flex items-center gap-12">
-                    <SlateLogo />
-                    <h1 class="text-title-1 text-text">Slate</h1>
-                </div>
-                <div class="flex gap-8">
-                    <h3 class="text-title-3 text-text">
-                        Founder, Designer & Dev
-                    </h3>
-                    <h3 class="text-title-3 text-text-2">2024-Present</h3>
-                </div>
-            </div>
-        </a>
-
-        <a
-            href="https://openmarch.com"
-            target="_blank"
-            class="rounded-32 bg-pareen flex items-start justiy-start p-24 hover:brightness-105 active:scale-95 duration-200 ease-out"
-        >
-            <div
-                class="rounded-8 bg-bg-window shadow-lg flex p-16 gap-12 flex-col border border-stroke"
-            >
-                <div class="flex items-center gap-12">
-                    <OpenMarchLogo />
-                    <h1 class="text-title-1 text-text">OpenMarch</h1>
-                </div>
-                <div class="flex gap-8">
-                    <h3 class="text-title-3 text-text">
-                        UI Designer & Front-end
-                    </h3>
-                    <h3 class="text-title-3 text-text-2">2024-Present</h3>
-                </div>
-            </div>
-        </a>
-
-        <div class="flex flex-col gap-8">
-            <div class="flex gap-8 items-center">
-                <Image
-                    src={pfpImage}
-                    alt="Profile Picture"
-                    width={128}
-                    height={128}
-                    class="size-72 rounded-16"
-                />
-                <h1 class="text-large-title max-[950px]:text-title-1">
-                    about my person
+    <section class="grid grid-cols-5 w-full h-fit gap-2">
+        <div class="flex flex-col gap-2">
+            <div class="bg-mic col-span-1 p-4 flex rounded-lg">
+                <h1 class="font-bold text-5xl font-titre leading-tight">
+                    My Meows
                 </h1>
             </div>
-            <div
-                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-24 flex-col"
-            >
-                <div class="flex flex-col gap-12">
-                    <h3 class="text-title-3">summary</h3>
-                    <p class="text-body leading-relaxed">
-                        I’m Jacob, a creative user interface designer and
-                        front-end developer. I put lots of care into special,
-                        unique design and performance because both of those
-                        factors make up great user experience. Design,
-                        performance and ease of use are of top priority.
-                    </p>
-                </div>
-                <div class="flex flex-col gap-12">
-                    <h3 class="text-title-3">fun facts</h3>
-                    <p class="text-body leading-relaxed">
-                        I love music, mainly drum corps/marching arts,
-                        alternative electronic, and classical/jazz. I’m a
-                        trombone player. I’m a Royal Canadian Sea Cadet.
-                        Obsessed with operating systems and city design,
-                        basically how everything works behind the scenes.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col gap-8">
-            <h1 class="text-large-title max-[950px]:text-title-1">
-                methods to inquire of me
-            </h1>
-            <div
-                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-8 flex-col"
-            >
-                <EnvelopeOpenIcon class="size-48 text-text" />
-                <h1 class="text-title-1">Electronic Mail</h1>
-                <div class="flex gap-8">
-                    <p class="text-title-3 text-text-2">Address</p>
-                    <a
-                        href="mailto:hello@jcbdkc.me"
-                        class="text-title-3 font-mono hover:underline"
-                    >
-                        hello@jcbdkc.me
-                    </a>
-                </div>
-            </div>
-
-            <div
-                class="rounded-32 bg-fg-base border border-stroke flex p-24 gap-8 flex-col"
-            >
-                <PaperPlaneRightIcon class="size-48 text-text" />
-                <h1 class="text-title-1">Direct Message</h1>
-                <div class="flex gap-12">
-                    <div class="flex gap-8">
-                        <p class="text-title-3 text-text-2">Discord</p>
-                        <button
-                            type="button"
-                            class="text-title-3 font-mono hover:underline focus:outline-none"
-                            data-copy-handle="jcbdkc"
-                            aria-label="Copy Discord handle"
-                        >
-                            @jcbdkc
-                        </button>
+            {meows.map(meow => (
+                <a
+                    href={`/meows/${meow.id}`}
+                    class="bg-mic hover:shadow-wow active:scale-95 active:shadow-none duration-150 col-span-1 p-4 gap-2 flex flex-col rounded-lg"
+                >
+                    <div class="flex gap-2 items-center">
+                        <MeowIcons icon={meow.data.icon} />
+                        <h2 class="text-2xl leading-tight">{meow.data.title}</h2>
                     </div>
-                    <div class="flex gap-8">
-                        <p class="text-title-3 text-text-2">Instagram</p>
-                        <a
-                            href="https://www.instagram.com/dukkcc0/"
-                            class="text-title-3 font-mono hover:underline"
-                        >
-                            @dukkcc0
-                        </a>
-                    </div>
-                </div>
-            </div>
+                    <p class="leading-tight">
+                        {meow.data.description}
+                    </p>
+                </a>
+            ))}
         </div>
-    </main>
-
-    <script>
-        const conic = document.querySelector("[data-follow-conic]");
-        if (conic) {
-            window.addEventListener("pointermove", (event) => {
-                const rect = conic.getBoundingClientRect();
-                const x = event.clientX - (rect.left + rect.width / 2);
-                const y = event.clientY - (rect.top + rect.height / 2);
-                const angle = Math.atan2(y, x) * (180 / Math.PI) - 90;
-
-                (conic as HTMLElement).style.setProperty(
-                    "--angle",
-                    `${angle}deg`,
-                );
-            });
-        }
-
-        const handleCopyButton =
-            document.querySelector<HTMLButtonElement>("[data-copy-handle]");
-
-        if (handleCopyButton) {
-            handleCopyButton.addEventListener("click", async () => {
-                const value =
-                    handleCopyButton.dataset.copyHandle ||
-                    handleCopyButton.textContent?.trim();
-
-                if (!value) {
-                    return;
-                }
-
-                try {
-                    await navigator.clipboard.writeText(value);
-                    const originalText = handleCopyButton.textContent;
-                    handleCopyButton.textContent = "Copied!";
-                    setTimeout(() => {
-                        handleCopyButton.textContent = originalText;
-                    }, 1500);
-                } catch (error) {
-                    console.error("Failed to copy handle", error);
-                }
-            });
-        }
-    </script>
+        <div class="bg-boo text-white col-span-4 p-16 flex flex-col items-center gap-16 rounded-lg">
+            <div class="flex gap-2 items-start w-full justify-end">
+                <JcbdkcLogo size="lg" class="w-[35vw] h-auto" />
+                <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><JcbdkcLogomark class="size-12 text-black" /></div>
+            </div>
+            <p class="w-full text-left">HI GUYS!! Ok so I love creating web experiences. I focus on graphic design, mainly user interface, and building design systems.</p>
+            <Star />
+            <p class="w-full text-left">HI GUYS!! Ok so I love creating web experiences. I focus on graphic design, mainly user interface, and building design systems.</p>
+            <Star />
+            <p class="w-full text-left">HI GUYS!! Ok so I love creating web experiences. I focus on graphic design, mainly user interface, and building design systems.</p>
+            <Star />
+            <p class="w-full text-left">HI GUYS!! Ok so I love creating web experiences. I focus on graphic design, mainly user interface, and building design systems.</p>
+            <ContactEstablisher />
+        </div>
+    </section>
 </Layout>

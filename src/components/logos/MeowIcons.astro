@@ -1,0 +1,12 @@
+---
+import { IconProps as IconPropsZod } from "~/types/MeowIcons";
+import {z} from "astro/zod"
+
+type IconProps = z.infer<typeof IconPropsZod>;
+interface Props {
+  icon: IconProps
+}
+const { icon } = Astro.props;
+---
+
+{icon === "aeralis" ? <p>HIII</p> : icon === "slate" ? <p>Slate</p> : <></>}
