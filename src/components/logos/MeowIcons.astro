@@ -2,6 +2,8 @@
 import { IconProps as IconPropsZod } from "~/types/MeowIcons";
 import {z} from "astro/zod"
 import AeralisIcon from "./icons/AeralisIcon.astro";
+import SlateIcon from "./icons/SlateIcon.astro";
+import OpenMarchIcon from "./icons/OpenMarchIcon.astro";
 
 type IconProps = z.infer<typeof IconPropsZod>;
 interface Props {
@@ -11,4 +13,4 @@ interface Props {
 const { icon, class: className} = Astro.props;
 ---
 
-{icon === "aeralis" ? <AeralisIcon class={className} /> : icon === "slate" ? <p>Slate</p> : <></>}
+{icon === "aeralis" ? <AeralisIcon class={className} /> : icon === "slate" ? <SlateIcon class={className} /> : icon === "openmarch" ? <OpenMarchIcon class={className} /> : <></>}

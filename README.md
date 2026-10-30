@@ -10,7 +10,7 @@ The correct capitalization for the brand is `Jcbdkc`. If you are curious, that n
 
 # Todo
 
-- [ ] /meows navigation
+- [x] /meows navigation
 - [ ] slate contact establisher 3
 - [ ] mobile
 - [ ] markdown image block system for writing meows

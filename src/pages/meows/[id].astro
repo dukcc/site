@@ -8,13 +8,23 @@ import ChevronIcon from "~/components/logos/icons/ChevronIcon.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("meows");
+
     return posts.map((post) => ({
         params: { id: post.id },
         props: { post },
     }));
 }
+
+
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const posts = await getCollection("meows");
+const targetIndex = posts.sort((a, b) => b.data.date - a.data.date).findIndex(indexedPost => post.data.title === indexedPost.data.title);
+const previousItem = posts[targetIndex + 1];
+const nextItem = posts[targetIndex - 1];
+
+console.log("index", targetIndex)
 ---
 
 <Layout title={post.data.title}>
@@ -24,13 +34,29 @@ const { Content } = await render(post);
                 <ChevronIcon />
                 <p>index</p>
             </a>
+            <div class="flex gap-2">
+                {previousItem &&
+                    <a href={`/meows/${previousItem.id}`} class="bg-mic h-11 flex items-center justify-center pl-2.5 px-4 gap-2 rounded-lg hover:shadow-wow active:scale-95 active:shadow-none duration-150">
+                        <ChevronIcon />
+                        <p>prev</p>
+                        <MeowIcons icon={previousItem.data.icon} />
+                    </a>
+                }
+                {nextItem &&
+                    <a href={`/meows/${nextItem.id}`} class="bg-mic h-11 flex items-center justify-center pr-2.5 px-4 gap-2 rounded-lg hover:shadow-wow active:scale-95 active:shadow-none duration-150">
+                        <MeowIcons icon={nextItem.data.icon} />
+                        <p>next</p>
+                        <ChevronIcon class="rotate-180" />
+                    </a>
+                }
+            </div>
         </div>
         <div class="w-full rounded-lg bg-boo text-white flex flex-col p-16 gap-16">
             <div class="flex flex-col gap-2 items-end">
                 <div class="flex items-center gap-0">
                     <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><JcbdkcLogomark class="size-12 text-black" /></div>
                     <div class="w-3 h-6 bg-[#b8b8b8]"></div>
-                    <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><MeowIcons class="size-12 text-black" icon={post.data.icon} /></div>
+                    <div class="size-17.5 bg-wow rounded-14 flex items-center justify-center"><MeowIcons class="size-11 text-black" icon={post.data.icon} /></div>
                 </div>
                 <h1 class="font-titre font-bold text-9xl bg-clip-text text-transparent bg-linear-to-b from-white to-[#999]">{post.data.title}</h1>
             </div>

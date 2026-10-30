@@ -9,6 +9,7 @@ const meows = defineCollection({
     title: z.string(),
     description: z.string(),
     icon: IconProps,
+    date: z.coerce.date(),
   }),
 });
 

@@ -2,6 +2,7 @@
 title: Aeralis
 description: Fictional science institute story studying antimatter, how the design and art was made
 icon: aeralis
+date: 2027-11-29
 
 ---
 

@@ -18,7 +18,7 @@ const meows = await getCollection("meows");
                     My Meows
                 </h1>
             </div>
-            {meows.map(meow => (
+            {meows.sort((a, b) => b.data.date - a.data.date).map(meow => (
                 <a
                     href={`/meows/${meow.id}`}
                     class="bg-mic hover:shadow-wow active:scale-95 active:shadow-none duration-150 col-span-1 p-4 gap-2 flex flex-col rounded-lg"
