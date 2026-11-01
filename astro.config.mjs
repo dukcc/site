@@ -6,21 +6,21 @@ import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
-  fonts: [
-    {
-      provider: fontProviders.fontsource(),
-      name: "Cossette Texte",
-      cssVariable: "--font-cossette",
+    vite: {
+        plugins: [tailwindcss()],
     },
-    {
-      provider: fontProviders.fontsource(),
-      name: "Cossette Titre",
-      cssVariable: "--font-cossette-titre",
-    },
-  ],
+    fonts: [
+        {
+            provider: fontProviders.fontsource(),
+            name: "Cossette Texte",
+            cssVariable: "--font-cossette",
+        },
+        {
+            provider: fontProviders.fontsource(),
+            name: "Cossette Titre",
+            cssVariable: "--font-cossette-titre",
+        },
+    ],
 
-  integrations: [svelte()],
+    integrations: [svelte()],
 });

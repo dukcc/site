@@ -7,11 +7,15 @@
     --color-mic: oklch(0.660199 0.229356 35.4025);
     --radius-64: 4rem;
     --radius-14: 0.875rem;
-    --shadow-wow: 0 4px 4px 0 rgba(255, 255, 255, 0.25) inset, 0 -4px 4px 0 rgba(252, 108, 0, 0.80) inset, 0 -22px 45.8px 0 rgba(214, 44, 0, 0.80) inset, 0 31px 40.3px 0 rgba(255, 139, 30, 0.80) inset;
-    --background-image-wow: linear-gradient(180deg, #FFF 0%, #999 100%);
+    --shadow-wow:
+        0 4px 4px 0 rgba(255, 255, 255, 0.25) inset,
+        0 -4px 4px 0 rgba(252, 108, 0, 0.8) inset,
+        0 -22px 45.8px 0 rgba(214, 44, 0, 0.8) inset,
+        0 31px 40.3px 0 rgba(255, 139, 30, 0.8) inset;
+    --background-image-wow: linear-gradient(180deg, #fff 0%, #999 100%);
 }
 
 @theme inline {
-  --font-sans: var(--font-cossette);
-  --font-titre: var(--font-cossette-titre);
+    --font-sans: var(--font-cossette);
+    --font-titre: var(--font-cossette-titre);
 }
