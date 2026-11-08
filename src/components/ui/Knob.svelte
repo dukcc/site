@@ -7,7 +7,6 @@
         step?: number;
         disabled?: boolean;
         class?: string;
-        label?: string;
         onValueChange?: (value: number) => void;
     }
     let {
@@ -17,7 +16,6 @@
         step = 1,
         disabled = false,
         class: className = "",
-        label,
         onValueChange,
     }: Props = $props();
 
@@ -93,14 +91,11 @@
     class={cn("relative inline-flex flex-col items-center gap-1", className)}
     role="presentation"
 >
-    {#if label}
-        <span class="text-muted-foreground text-xs">{label}</span>
-    {/if}
     <!-- Outer ring / slider surface -->
     <div
         class={cn(
             "relative flex cursor-grab touch-none rounded-full select-none",
-            "bg-boo border border-transparent shadow-inner",
+            "bg-black border-2 border-[#424242]",
             "size-12",
             "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
             "active:border-ring active:ring-ring active:cursor-grabbing active:ring-2",
@@ -111,62 +106,31 @@
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={value}
-        aria-label={label ?? "Knob"}
+        aria-label={"Knob"}
         aria-disabled={disabled}
         onpointerdown={onPointerDown}
         onpointermove={onPointerMove}
         onpointerup={onPointerUp}
         onkeydown={onKeyDown}
     >
-        <!-- SVG arc -->
-        <svg
-            viewBox="0 0 100 100"
-            class="pointer-events-none absolute inset-0 size-full overflow-visible"
-            aria-hidden="true"
-        >
-            <!-- Background track arc -->
-            <path
-                d={(() => {
-                    const s = arcPoint(MIN_ANGLE);
-                    const e = arcPoint(MAX_ANGLE);
-                    return `M ${s.x} ${s.y} A ${r} ${r} 0 1 1 ${e.x} ${e.y}`;
-                })()}
-                fill="none"
-                stroke="currentColor"
-                stroke-width="6"
-                stroke-linecap="round"
-                class="text-boo"
-            />
-            <!-- Active fill arc -->
-            {#if normalised > 0}
-                <path
-                    d={arcPath()}
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="6"
-                    stroke-linecap="round"
-                    class="text-white opacity-70"
-                />
-            {/if}
-        </svg>
         <!-- Body (rotates with value) -->
         <div
-            class={cn(
-                "border-boo bg-card absolute rounded-full ",
-                "transition-transform duration-100 ease-out",
-                "inset-1",
-            )}
+            class={cn("absolute rounded-full inset-0")}
             style="transform: rotate({rotationDeg}deg)"
         >
             <!-- Indicator dot -->
             <div
                 class={cn(
-                    "bg-red-500 absolute left-1/2 -translate-x-1/2 rounded-full",
+                    "absolute left-1/2 -translate-x-1/2 items-center",
                     "top-1",
                     "h-3",
                     "w-0.5",
                 )}
-            ></div>
+            >
+                <div
+                    class="size-1.5 bg-white rounded-full absolute right-px translate-x-1"
+                ></div>
+            </div>
         </div>
     </div>
 </div>
