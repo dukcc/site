@@ -4,7 +4,7 @@ import { getCollection, render } from "astro:content";
 import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
 import Prose from "~/components/Prose.astro";
 import MeowIcons from "~/components/logos/MeowIcons.astro";
-import ChevronIcon from "~/components/logos/icons/ChevronIcon.astro";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
     const posts = await getCollection("meows");
@@ -20,7 +20,7 @@ const { Content } = await render(post);
 
 const posts = await getCollection("meows");
 const targetIndex = posts
-    .sort((a, b) => b.data.date - a.data.date)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
     .findIndex((indexedPost) => post.data.title === indexedPost.data.title);
 const previousItem = posts[targetIndex + 1];
 const nextItem = posts[targetIndex - 1];
@@ -35,7 +35,7 @@ console.log("index", targetIndex);
                 href="/"
                 class="bg-mic h-11 flex items-center justify-center pl-2.5 px-4 gap-1 rounded-lg hover:shadow-wow active:scale-95 active:shadow-none duration-150"
             >
-                <ChevronIcon />
+                <Icon name="chevron-w" />
                 <p>index</p>
             </a>
             <div class="flex gap-2">
@@ -44,7 +44,7 @@ console.log("index", targetIndex);
                         href={`/meows/${previousItem.id}`}
                         class="bg-mic h-11 flex items-center justify-center pl-2.5 px-4 gap-2 rounded-lg hover:shadow-wow active:scale-95 active:shadow-none duration-150"
                     >
-                        <ChevronIcon />
+                        <Icon name="chevron-w" />
                         <p>prev</p>
                         <MeowIcons icon={previousItem.data.icon} />
                     </a>
@@ -56,7 +56,7 @@ console.log("index", targetIndex);
                     >
                         <MeowIcons icon={nextItem.data.icon} />
                         <p>next</p>
-                        <ChevronIcon class="rotate-180" />
+                        <Icon name="chevron-w" class="rotate-180" />
                     </a>
                 )}
             </div>

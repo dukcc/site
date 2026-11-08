@@ -3,7 +3,7 @@ import Layout from "~/layouts/Layout.astro";
 import JcbdkcLogo from "~/components/logos/JcbdkcLogo.astro";
 import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
 import Star from "~/components/logos/Star.astro";
-import ContactEstablisher from "~/components/ContactEstablisher.astro";
+import ContactEstablisher from "~/components/ContactEstablisher.svelte";
 import { getCollection } from "astro:content";
 import MeowIcons from "~/components/logos/MeowIcons.astro";
 
@@ -19,7 +19,7 @@ const meows = await getCollection("meows");
                 </h1>
             </div>
             {meows
-                .sort((a, b) => b.data.date - a.data.date)
+                .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
                 .map((meow) => (
                     <a
                         href={`/meows/${meow.id}`}
@@ -65,7 +65,7 @@ const meows = await getCollection("meows");
                 graphic design, mainly user interface, and building design
                 systems.
             </p>
-            <ContactEstablisher />
+            <ContactEstablisher client:load />
         </div>
     </section>
 </Layout>
