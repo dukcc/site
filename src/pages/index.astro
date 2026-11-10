@@ -3,7 +3,7 @@ import Layout from "~/layouts/Layout.astro";
 import JcbdkcLogo from "~/components/logos/JcbdkcLogo.astro";
 import JcbdkcLogomark from "~/components/logos/JcbdkcLogomark.astro";
 import Star from "~/components/logos/Star.astro";
-import ContactEstablisher from "~/components/ContactEstablisher.svelte";
+import ContactEstablisher from "~/components/ContactEstablisher.astro";
 import { getCollection } from "astro:content";
 import MeowIcons from "~/components/logos/MeowIcons.astro";
 
@@ -65,7 +65,7 @@ const meows = await getCollection("meows");
                 graphic design, mainly user interface, and building design
                 systems.
             </p>
-            <ContactEstablisher client:load />
+            <ContactEstablisher />
         </div>
     </section>
 </Layout>
