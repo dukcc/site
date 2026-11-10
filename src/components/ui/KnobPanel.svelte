@@ -77,6 +77,7 @@
         </div>
         <Knob
             value={$ce3Store.freq}
+            max={10}
             onValueChange={(v) =>
                 ce3Store.set({
                     ...ce3Store.get(),

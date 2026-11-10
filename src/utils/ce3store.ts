@@ -11,5 +11,5 @@ export const ce3Store = atom<ce3Store>({
     pos: 50,
     meowMax: 2,
     pos89: 40,
-    freq: 50
+    freq: 3
 });
