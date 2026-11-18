@@ -26,37 +26,75 @@ const links = [
 
 <script>
     import { ce3Store } from "~/utils/ce3store";
+    import bg0 from "~/assets/ce3Bg/bg0.svg";
+    import bg1 from "~/assets/ce3Bg/bg1.svg";
+    import bg2 from "~/assets/ce3Bg/bg2.svg";
+    import bg3 from "~/assets/ce3Bg/bg3.svg";
+
+    const ce3BgImages: Record<number, string> = {
+        0: bg0.src,
+        1: bg1.src,
+        2: bg2.src,
+        3: bg3.src,
+    };
 
     function randomPosition(
         width: number,
         height: number,
+        elementWidth: number,
+        elementHeight: number,
         offsetX: number,
         offsetY: number,
     ) {
+        const padding = 8;
+
+        const minX = Math.min(
+            Math.max(padding, offsetX),
+            Math.max(padding, width - elementWidth - padding),
+        );
+
+        const minY = Math.min(
+            Math.max(padding, offsetY),
+            Math.max(padding, height - elementHeight - padding),
+        );
+
+        const maxX = Math.max(padding, width - elementWidth - padding);
+        const maxY = Math.max(padding, height - elementHeight - padding);
+
         return {
-            x: Math.floor(Math.random() * width + offsetX),
-            y: Math.floor(Math.random() * height + offsetY),
+            x: minX + Math.random() * (maxX - minX),
+            y: minY + Math.random() * (maxY - minY),
         };
     }
 
-    function updatePositions(value: { pos: number; pos89: number }) {
-        const map = document.getElementById("map");
+    function updatePositions(value: {
+        pos: number;
+        pos89: number;
+        meowMax: number;
+    }) {
+        const map = document.getElementById("map") as HTMLElement;
+        map.style.backgroundImage = `url(${ce3BgImages[value.meowMax]})`;
+
         if (!map) return;
 
         const { width, height } = map.getBoundingClientRect();
 
-        const positions = [...map.children];
+        Array.from(map.children).forEach((element) => {
+            const el = element as HTMLElement;
 
-        positions.forEach((element) => {
+            const { width: elWidth, height: elHeight } =
+                el.getBoundingClientRect();
+
             const { x, y } = randomPosition(
                 width,
                 height,
+                elWidth,
+                elHeight,
                 value.pos89,
                 value.pos,
             );
 
-            (element as HTMLElement).style.transform =
-                `translate(${x}px, ${y}px)`;
+            el.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
 
@@ -79,7 +117,7 @@ const links = [
     <div class="size-83 bg-mic rounded-14 shadow-wow p-2.5">
         <div
             id="map"
-            class="bg-black rounded-sm w-full h-full overflow-clip relative"
+            class="rounded-sm w-full h-full overflow-clip relative bg-cover"
         >
             {links.map((link) =>
                 link.href ? (

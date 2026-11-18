@@ -56,6 +56,8 @@
     function onPointerDown(e: PointerEvent) {
         if (disabled) return;
 
+        e.preventDefault();
+
         dragging = true;
         startY = e.clientY;
         startValue = value;
