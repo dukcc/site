@@ -1,21 +1,68 @@
 ---
 import SlateIcon from "~/icons/slate.svg";
 import KnobPanel from "./ui/KnobPanel.svelte";
+
+const links = [
+    {
+        id: "discord",
+        label: "DISCORD",
+    },
+    {
+        id: "instagram",
+        label: "INSTAGRAM",
+        href: "https://www.instagram.com/jcbdkc/",
+    },
+    {
+        id: "email",
+        label: "EMAIL",
+        href: "mailto:hello@jcbdkc.me",
+    },
+    {
+        id: "you",
+        label: "YOU ARE HERE",
+    },
+];
 ---
 
 <script>
     import { ce3Store } from "~/utils/ce3store";
 
-    ce3Store.subscribe((value) => {
-        const map = document.getElementById("map");
-        const height = map.clientHeight;
-        const width = map.clientWidth;
-        const box = document.getElementById("discord");
+    function randomPosition(
+        width: number,
+        height: number,
+        offsetX: number,
+        offsetY: number,
+    ) {
+        return {
+            x: Math.floor(Math.random() * width + offsetX),
+            y: Math.floor(Math.random() * height + offsetY),
+        };
+    }
 
-        let randY = Math.floor(Math.random() * height + value.pos);
-        let randX = Math.floor(Math.random() * width + value.pos89);
-        box.style.transform = `translate(${randX}px, ${randY}px)`;
-    });
+    function updatePositions(value: { pos: number; pos89: number }) {
+        const map = document.getElementById("map");
+        if (!map) return;
+
+        const { width, height } = map.getBoundingClientRect();
+
+        const positions = [...map.children];
+
+        positions.forEach((element) => {
+            const { x, y } = randomPosition(
+                width,
+                height,
+                value.pos89,
+                value.pos,
+            );
+
+            (element as HTMLElement).style.transform =
+                `translate(${x}px, ${y}px)`;
+        });
+    }
+
+    const unsubscribe = ce3Store.subscribe(updatePositions);
+
+    document.addEventListener("astro:before-swap", unsubscribe);
 </script>
 
 <section class="flex flex-col items-center relative">
@@ -30,41 +77,41 @@ import KnobPanel from "./ui/KnobPanel.svelte";
         <KnobPanel client:load />
     </div>
     <div class="size-83 bg-mic rounded-14 shadow-wow p-2.5">
-        <div class="bg-black rounded-sm w-full h-full overflow-clip" id="map">
-            <div
-                class="w-fit h-fit flex flex-col items-center hover:brightness-125 duration-150 active:brightness-75"
-                aria-label="Discord"
-                id="discord"
-            >
-                <p class="font-titre text-poo">DISCORD</p>
-                <div class="size-3 rounded-full bg-poo"></div>
-            </div>
-            <a
-                class="w-fit h-fit flex flex-col items-center hover:brightness-125 duration-150 active:brightness-75"
-                href="https://www.instagram.com/jcbdkc/"
-                target="_blank"
-                aria-label="Instagram"
-                id="discord"
-            >
-                <p class="font-titre text-poo">INSTAGRAM</p>
-                <div class="size-3 rounded-full bg-poo"></div>
-            </a>
-            <a
-                class="w-fit h-fit flex flex-col items-center hover:brightness-125 duration-150 active:brightness-75"
-                href="mailto:hello@jcbdkc.me"
-                aria-label="Email"
-                id="discord"
-            >
-                <p class="font-titre text-poo">EMAIL</p>
-                <div class="size-3 rounded-full bg-poo"></div>
-            </a>
-            <div
-                class="w-fit h-fit flex flex-col items-center hover:brightness-125 duration-150 active:brightness-75"
-                id="discord"
-            >
-                <p class="font-titre text-mic">YOU ARE HERE</p>
-                <div class="size-3 rounded-full bg-mic"></div>
-            </div>
+        <div
+            id="map"
+            class="bg-black rounded-sm w-full h-full overflow-clip relative"
+        >
+            {links.map((link) =>
+                link.href ? (
+                    <a
+                        class="absolute w-fit h-fit flex flex-col items-center hover:brightness-125 duration-150 active:brightness-75"
+                        href={link.href}
+                        target={
+                            link.href.startsWith("https") ? "_blank" : undefined
+                        }
+                        rel={
+                            link.href.startsWith("https")
+                                ? "noopener noreferrer"
+                                : undefined
+                        }
+                        aria-label={link.label}
+                    >
+                        <p class="font-titre text-poo">{link.label}</p>
+                        <div class="size-3 rounded-full bg-poo"></div>
+                    </a>
+                ) : (
+                    <div class="absolute w-fit h-fit flex flex-col items-center">
+                        <p
+                            class={`font-titre ${link.id === "you" ? "text-mic" : "text-poo"}`}
+                        >
+                            {link.label}
+                        </p>
+                        <div
+                            class={`size-3 rounded-full ${link.id === "you" ? "bg-mic" : "bg-poo"}`}
+                        ></div>
+                    </div>
+                ),
+            )}
         </div>
     </div>
 </section>

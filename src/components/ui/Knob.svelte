@@ -51,20 +51,30 @@
     let dragging = false;
     let startY = 0;
     let startValue = 0;
+    let lastEmittedValue = value;
+
     function onPointerDown(e: PointerEvent) {
         if (disabled) return;
+
         dragging = true;
         startY = e.clientY;
         startValue = value;
+        lastEmittedValue = value;
+
         (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     }
+
     function onPointerMove(e: PointerEvent) {
         if (!dragging) return;
-        // Drag up = increase, drag down = decrease; 200px = full range
+
         const delta = -(e.clientY - startY) / 200;
         const raw = startValue + delta * (max - min);
         const snapped = Math.round(raw / step) * step;
         const clamped = Math.max(min, Math.min(max, snapped));
+
+        if (clamped === lastEmittedValue) return;
+
+        lastEmittedValue = clamped;
         onValueChange?.(clamped);
     }
     function onPointerUp(e: PointerEvent) {

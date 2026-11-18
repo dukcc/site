@@ -15,3 +15,4 @@ The correct capitalization for the brand is `Jcbdkc`. If you are curious, that n
 - [ ] slate contact establisher 3
 - [ ] mobile
 - [ ] markdown image block system for writing meows
+- [ ] every 5 seconds, 1/10000 chance of foxy jumpscare
